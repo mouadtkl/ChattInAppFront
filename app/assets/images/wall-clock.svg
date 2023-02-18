@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="wall-clock" width="12.23" height="12.23" viewBox="0 0 12.23 12.23">
+    <defs>
+        <style>
+            .cls-1{fill:#fefefe}
+        </style>
+    </defs>
+    <g id="Groupe_258">
+        <g id="Groupe_257">
+            <path id="Tracé_2058" d="M6.115 0a6.115 6.115 0 1 0 6.115 6.115A6.122 6.122 0 0 0 6.115 0zm0 11.337a5.222 5.222 0 1 1 5.222-5.222 5.228 5.228 0 0 1-5.222 5.222z" class="cls-1"/>
+        </g>
+    </g>
+    <g id="Groupe_260" transform="translate(5.371 2.99)">
+        <g id="Groupe_259">
+            <path id="Tracé_2059" d="M227.684 128.321h-1.934v-2.678a.446.446 0 1 0-.893 0v3.124a.446.446 0 0 0 .446.446h2.38a.446.446 0 1 0 0-.893z" class="cls-1" transform="translate(-224.857 -125.197)"/>
+        </g>
+    </g>
+</svg>

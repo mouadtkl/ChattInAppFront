@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30.393" height="16.037" viewBox="0 0 30.393 16.037">
+    <defs>
+        <style>
+            .cls-2{fill:#ce1124}.cls-3{fill:#00247d}
+        </style>
+    </defs>
+    <g id="g10" transform="translate(-153 1311.041)">
+        <g id="g12" transform="translate(153 -1311.041)">
+            <path id="path14" fill="#fff" d="M30.385-1383.867H0v-16.009h30.385v16.009" transform="translate(0 1399.878)"/>
+            <path id="path16" d="M31.486-1393.379H18.107v-6.4h-3.652v6.4H1.111v3.2h13.344v6.4h3.652v-6.4h13.379v-3.2" class="cls-2" transform="translate(-1.099 1399.786)"/>
+            <path id="path18" d="M.026-1237.125v3.486h6.627z" class="cls-3" transform="translate(-.026 1238.991)"/>
+            <path id="path20" d="M310.843-1399.93h-.1l8.593 4.543v-4.548h-8.5" class="cls-3" transform="translate(-307.186 1399.931)"/>
+            <path id="path22" d="M10.225-1394.536l-10.2-5.328v1.256l7.769 4.072h2.43" class="cls-2" transform="translate(-.026 1399.865)"/>
+            <path id="path24" d="M1762.942-467.519l10.2 5.328v-1.256l-7.769-4.072h-2.43" class="cls-2" transform="translate(-1742.748 478.2)"/>
+            <path id="path26" d="M.026-463.616v-3.484h6.627z" class="cls-3" transform="translate(-.026 477.788)"/>
+            <path id="path28" d="M310.843-392.488h-.1l8.593-4.544v4.548h-8.5" class="cls-3" transform="translate(-307.186 408.525)"/>
+            <path id="path30" d="M10.747-467.551l-10.14 5.325h2.371l9.784-5.111v-.217h-2.015" class="cls-2" transform="translate(-.6 478.232)"/>
+            <path id="path32" d="M2081.382-1237.192v3.486h-6.627z" class="cls-3" transform="translate(-2050.989 1239.057)"/>
+            <path id="path34" d="M1600.892-1400h.1l-8.593 4.543V-1400h8.5" class="cls-3" transform="translate(-1574.156 1399.997)"/>
+            <path id="path36" d="M1605.29-1399.356h-2.281l-9.853 5.147v.181h2.085l10.05-5.327" class="cls-2" transform="translate(-1574.907 1399.364)"/>
+            <path id="path38" d="M2081.382-463.729v-3.486h-6.627z" class="cls-3" transform="translate(-2050.989 477.9)"/>
+            <path id="path40" d="M1600.892-392.6h.1l-8.593-4.544v4.548h8.5" class="cls-3" transform="translate(-1574.156 408.64)"/>
+        </g>
+    </g>
+</svg>

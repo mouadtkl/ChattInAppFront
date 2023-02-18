@@ -1,0 +1,57 @@
+trigger:
+- pipeline
+
+pool:
+  vmImage: 'ubuntu-latest'
+  
+stages: 
+
+  - stage: qa
+    jobs:
+      - job: test
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: $(NodeVestion)
+            displayName: 'Install Node.js'
+
+          - script: |
+              npm install
+            displayName: 'npm install'
+          
+          - script: |
+              npm run lint
+            displayName: 'npm test'
+         
+          - task: Gradle@2
+            inputs:
+              workingDirectory: 'android'
+              gradleWrapperFile: 'android/gradlew'
+              tasks: 'assembleRelease'
+            continueOnError: false
+          
+          - script: mv android/app/build/outputs/apk/release/app-release.apk  app-release.apk
+            displayName: Android Postprocess
+            continueOnError: false
+
+          - task: AppCenterDistribute@3
+            inputs:
+              serverEndpoint: 'PCA'
+              appSlug: 'informatiqueinterne8-gmail.com/EER'
+              appFile: 'app-release.apk'
+              buildVersion: '100'
+              symbolsOption: 'Android'
+              releaseNotesOption: 'input'
+              releaseNotesInput: 'test'
+              destinationType: 'groups'
+            displayName: "appCenter"
+
+          - task: CopyFiles@2
+            inputs:
+              contents: 'app-release.apk'
+              targetFolder: $(Build.ArtifactStagingDirectory)
+          
+          - task: PublishBuildArtifacts@1
+            inputs:
+              ArtifactName: 'output'
+            

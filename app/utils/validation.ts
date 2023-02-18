@@ -1,0 +1,11 @@
+export const EMAIL_REGEX = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const PHONE_REGEX = /^0\d{9}$/;
+export const KYC_PHONE_REGEX = /\d{7,12}$/;
+export const PHONE_WITH_CALLING_CODE_REGEX = /^\d{9}$/;
+export const POSTAL_CODE_REGEX = /^\d{5}$/;
+export const NAME_REGEX = /^[a-zA-ZÀ-ÿ0-9_ +*@°/|'''-()]{1,30}$/;
+export const MSGSHARE_REGEX = /^.{0,50}/;
+export const ACCOUNT_REGEX = /[0-9]{16}$/;
+export const THRESHOLD_REGEX = /([0-9]{4})$/;
+export const PASSWORD_REGEX = /([a-zA-Z\-0-9]{7})$/;
+export const ADDRESS_REGEX = /^[a-zA-ZÀ-ÿ0-9_ +*,@/|.'''-()]{1,80}$/;

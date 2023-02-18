@@ -1,0 +1,7 @@
+.eslintrc.js
+babel.config.js
+metro.config.js
+babel.config.js
+index.js
+/scripts
+react-native.config.js
