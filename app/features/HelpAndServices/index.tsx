@@ -33,18 +33,6 @@ export default function HelpAndServices() {
   const [modalVisible, setModalVisible] = useState(false);
 
   const services = [
-    // {
-    //   id: 'ser-1',
-    //   name: 'Mood Detector',
-    //   icon: User,
-    //   action: () => { },
-    // },
-    // {
-    //   id: 'ser-2',
-    //   name: 'Lie Detector',
-    //   icon: User,
-    //   action: () => { },
-    // },
     {
       id: 'ser-1',
       name: 'Contactez nous',
