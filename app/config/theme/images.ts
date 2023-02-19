@@ -21,6 +21,9 @@ import HeaderBg from '@app/assets/images/header-bg.png';
 import Selected from '@app/assets/images/selected.svg';
 import EnFlag from '@app/assets/images/en-flag.svg';
 import FrFlag from '@app/assets/images/fr-flag.svg';
+import Contactus from '@app/assets/images/contactus.png';
+import Aboutus from '@app/assets/images/aboutus.png';
+import Learn from '@app/assets/images/learn.svg';
 
 const images = {
   BgMasque,
@@ -46,6 +49,9 @@ const images = {
   Selected,
   EnFlag,
   FrFlag,
+  Contactus,
+  Aboutus,
+  Learn,
 };
 
 export default images;

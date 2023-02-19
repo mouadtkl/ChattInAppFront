@@ -1,4 +1,4 @@
-package com.chattinapp;
+package com.chatty.open.gpt.ai.chatbot;
 
 import android.content.Intent;
 import android.os.Bundle;

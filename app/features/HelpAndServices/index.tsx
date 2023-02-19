@@ -16,18 +16,14 @@ import {
   ServiceName,
 } from './components';
 
-export default function HelpAndServices() {
+export default function HelpAndServices({ navigation }) {
+
   const {
     BgSplit,
-    LogoBlanc,
     ArrowDown,
     ArrowUp,
-    User,
-    Location,
     Contact,
-    Calculator,
     Info,
-    Balance,
   } = theme.images;
 
   const [modalVisible, setModalVisible] = useState(false);
@@ -37,18 +33,26 @@ export default function HelpAndServices() {
       id: 'ser-1',
       name: 'Contactez nous',
       icon: Contact,
-      action: () => { },
+      action: () => {
+        setModalVisible(false);
+        navigation.navigate('ContactUs');
+      },
     },
     {
       id: 'ser-2',
       name: 'A propos',
       icon: Info,
-      action: () => { },
+      action: () => {
+        setModalVisible(false);
+        navigation.navigate('AboutUs');
+      },
     },
   ];
 
   return (
+
     <>
+
       <Touchable onPress={() => setModalVisible(true)}>
         <ArrowUp width={s(12)} height={vs(12)} fill={theme.colors.SECONDARY} />
         <FooterText>Aide & services</FooterText>

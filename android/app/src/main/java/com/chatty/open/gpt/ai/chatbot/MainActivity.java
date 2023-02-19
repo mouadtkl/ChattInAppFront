@@ -1,4 +1,4 @@
-package com.chattinapp;
+package com.chatty.open.gpt.ai.chatbot;
 
 import com.facebook.react.ReactActivity;
 import org.devio.rn.splashscreen.SplashScreen;
@@ -18,6 +18,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "chattinapp";
+    return "Chattyopengptaichatbot";
   }
 }

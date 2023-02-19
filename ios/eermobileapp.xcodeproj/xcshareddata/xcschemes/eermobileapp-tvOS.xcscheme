@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-               BuildableName = "chattinapp-tvOS.app"
-               BlueprintName = "chattinapp-tvOS"
-               ReferencedContainer = "container:chattinapp.xcodeproj">
+               BuildableName = "Chattyopengptaichatbot-tvOS.app"
+               BlueprintName = "Chattyopengptaichatbot-tvOS"
+               ReferencedContainer = "container:Chattyopengptaichatbot.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2D02E48F1E0B4A5D006451C7"
-               BuildableName = "chattinapp-tvOSTests.xctest"
-               BlueprintName = "chattinapp-tvOSTests"
-               ReferencedContainer = "container:chattinapp.xcodeproj">
+               BuildableName = "Chattyopengptaichatbot-tvOSTests.xctest"
+               BlueprintName = "Chattyopengptaichatbot-tvOSTests"
+               ReferencedContainer = "container:Chattyopengptaichatbot.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "chattinapp-tvOS.app"
-            BlueprintName = "chattinapp-tvOS"
-            ReferencedContainer = "container:chattinapp.xcodeproj">
+            BuildableName = "Chattyopengptaichatbot-tvOS.app"
+            BlueprintName = "Chattyopengptaichatbot-tvOS"
+            ReferencedContainer = "container:Chattyopengptaichatbot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2D02E47A1E0B4A5D006451C7"
-            BuildableName = "chattinapp-tvOS.app"
-            BlueprintName = "chattinapp-tvOS"
-            ReferencedContainer = "container:chattinapp.xcodeproj">
+            BuildableName = "Chattyopengptaichatbot-tvOS.app"
+            BlueprintName = "Chattyopengptaichatbot-tvOS"
+            ReferencedContainer = "container:Chattyopengptaichatbot.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

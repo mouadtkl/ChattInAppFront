@@ -8,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const Title = styled.Text`
-  font-size: ${scaleFont(30)}px;
+  font-size: ${scaleFont(25)}px;
   font-family: ${(props) => props.theme.fontFamily.bold};
   line-height: ${vs(60)}px;
   color: ${(props) => props.theme.colors.SECONDARY};
@@ -24,6 +24,7 @@ export const BodyContainer = styled.View`
   flex: 2.5;
   justify-content: center;
   align-items: center;
+  margin-bottom: ${vs(150)}px;
 `;
 
 export const FooterContainer = styled.View`

@@ -49,7 +49,7 @@ export default function Guide({ navigation }) {
     Notification,
     Localisation,
     Scan,
-    Form,
+    Learn,
     Signature,
     ArrowRight,
     Shuttle,
@@ -68,39 +68,33 @@ export default function Guide({ navigation }) {
         icon: Notification,
         title: 'Welcome',
         description:
-          "Lie Detector Machine for Prank simulates to test whether you are telling the truth or lying, it's easy, secure and in just a few clicks!",
+          "Chatty Open GPT - AI Chatbot lets you have rich conversations in different languages thanks to its Artificial Intelligence Powered Chatbot.",
       },
       {
         id: 'step-2',
         icon: Localisation,
-        title: 'Finger into scanner  panel',
-        description: 'Keep your finger into the scanner panel while x Ray scan your fingerprint.',
+        title: 'Multicultural',
+        description: "Ask our Chatbot about countries, localizations, and cultures."
       },
       {
         id: 'step-3',
-        icon: Scan,
-        title: 'Scanning your Finger',
-        description: 'XRay will start scanning your finger. after some seconds, the machine will determinate you tell the truthor you lie.',
+        icon: Learn,
+        title: 'Learn with ChatGPT',
+        description: "Generate code, learn computer science, and learn anything from ChatGPT",
       },
-      // {
-      //   id: 'step-4',
-      //   icon: Form,
-      //   title: 'Lets Start',
-      //   description: 'Abusus enim multitudine hominum quam tranquillis',
-      // },
       {
         id: 'step-4',
         icon: Signature,
-        title: 'Enjoy the machine',
-        description: 'Have enjoy and fun with Lie Detector prank and share it with your friends or family or social media.',
+        title: 'Enjoy the Conversation',
+        description: "Have fun and enjoy with Chatty Open GPT - generate jokes or look for business insights and share it it with your friends, family or on social media.",
         action: {
-          title: "Lets Start",
+          title: "Let's Start",
           func: skip,
         },
       },
     ];
     setSteps(allSteps);
-  }, [Form, Localisation, Notification, Scan, Signature, skip]);
+  }, [Learn, Localisation, Notification, Signature, skip]);
 
   return (
     <Container>

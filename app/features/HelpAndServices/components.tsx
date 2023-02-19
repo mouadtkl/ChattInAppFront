@@ -27,9 +27,9 @@ export const FooterContainer = styled.View`
 `;
 
 export const FooterText = styled.Text`
-  font-size: ${scaleFont(12)}px;
+  font-size: ${scaleFont(18)}px;
   font-family: ${(props) => props.theme.fontFamily.regular};
-  line-height: ${vs(24)}px;
+  line-height: ${vs(30)}px;
   color: ${(props) => props.theme.colors.PRIMARY_DARK};
 `;
 

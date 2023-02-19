@@ -8,14 +8,14 @@ const { EnFlag, FrFlag } = theme.images;
 
 export const langs = [
   {
-    key: 'fr',
-    label: 'Français',
-    flagIcon: FrFlag,
-  },
-  {
     key: 'en',
     label: 'English',
     flagIcon: EnFlag,
+  },
+  {
+    key: 'fr',
+    label: 'Français',
+    flagIcon: FrFlag,
   },
 ];
 
@@ -24,8 +24,8 @@ i18n.use(initReactI18next).init({
     fr: { ...fr },
     en: { ...en },
   },
-  lng: 'fr',
-  fallbackLng: 'fr',
+  lng: 'en',
+  fallbackLng: 'en',
   debug: true,
   interpolation: {
     escapeValue: false,

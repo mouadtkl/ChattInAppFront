@@ -15,20 +15,20 @@ import {
 
 const { ArrowDown, Bank, PersonalInfo } = theme.images;
 
-export default function Auth({ navigation }) {
+export default function Home({ navigation }) {
   const { translate } = useTranslation('Home');
   const headerHeight = useHeaderHeight();
 
   return (
     <Container topMargin={headerHeight}>
       <HeadContainer>
-        <Title>CHAT GPT WORLD</Title>
-        <ArrowDown width={s(20)} height={vs(20)} />
+        <Title>ASK CHAT GPT WORLD</Title>
+        {/* <ArrowDown width={s(20)} height={vs(20)} /> */}
       </HeadContainer>
       <BodyContainer>
         <Button
           onPress={() => navigation.navigate('Chatt')}
-          title="CHATTY"
+          title="CHAT"
           type="select"
           //icon={PersonalInfo}
           iconPosition="left"
@@ -44,7 +44,7 @@ export default function Auth({ navigation }) {
         />
       </BodyContainer>
       <FooterContainer>
-        <HelpAndServices />
+        <HelpAndServices navigation={navigation} />
       </FooterContainer>
     </Container>
   );

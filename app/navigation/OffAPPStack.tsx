@@ -1,6 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from '@app/screens/Home';
+import ContactUs from '@app/screens/ContactUs';
+import AboutUs from '@app/screens/AboutUs';
 import Guide from '@app/screens/Guide';
 import Chatt from '@app/screens/Chatt';
 import QAndA from '@app/screens/QAndA';
@@ -62,15 +64,8 @@ function NavBar(props) {
 }
 
 const screenOptions = {
-  BecomeClient: { backTo: 'Home' },
-  Nationality: {
-    step: 1,
-    withProgress: true,
-    title: 'Je choisis ma nationalité',
-  },
-  Scan: { step: 2, withProgress: true, title: 'Je scanne mes documents' },
-  Form: { step: 3, withProgress: true, title: 'Je remplis mes informations' },
-  Agency: { step: 4, withProgress: true, title: 'Je choisi mon agence' },
+  Chatt: { backTo: 'Home' },
+  QAndA: { step: 2, withProgress: true, title: 'Ask me some Questions' },
 };
 
 const headerScreenOptions = (props) => {
@@ -114,12 +109,22 @@ export default function OffAPPStack() {
       <Stack.Screen
         name="Home"
         component={Home}
-        options={{ headerShown: false }}
+        options={{ headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="ContactUs"
+        component={ContactUs}
+        options={{ headerTransparent: true }}
+      />
+      <Stack.Screen
+        name="AboutUs"
+        component={AboutUs}
+        options={{ headerTransparent: true }}
       />
       <Stack.Screen
         name="Guide"
         component={Guide}
-        options={{ headerTransparent: true }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Chatt"
