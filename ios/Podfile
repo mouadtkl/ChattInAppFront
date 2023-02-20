@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '10.0'
 
-target 'Chattyopengptaichatbot' do
+target 'chattopengptai' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
@@ -25,10 +25,10 @@ target 'Chattyopengptaichatbot' do
   end
 end
 
-target 'Chattyopengptaichatbot-tvOS' do
-  # Pods for Chattyopengptaichatbot-tvOS
+target 'chattopengptai-tvOS' do
+  # Pods for chattopengptai-tvOS
 
-  target 'Chattyopengptaichatbot-tvOSTests' do
+  target 'chattopengptai-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
