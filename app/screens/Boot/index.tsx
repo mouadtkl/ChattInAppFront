@@ -5,10 +5,22 @@ import i18n from '@app/i18n';
 import { getValue } from '@app/services/storage/asyncStorage';
 import theme from '@app/config/theme';
 import { BodyContainer } from './components';
+import { useSelector, useDispatch } from 'react-redux';
+import { getConfig } from '@app/store/reducers/chatgpt/chatgpt.actions';
+import { appConfig } from '@app/store/reducers/chatgpt/chatgpt.selectors';
 
 const { BgHome } = theme.images;
 
 function Boot({ navigation }) {
+
+  const dispatch = useDispatch();
+  const dynamicConfig = useSelector(appConfig);
+
+
+  async function loadConfig() {
+    dispatch(getConfig());
+  }
+
   async function loadLang() {
     const selectedLang = await getValue('selectedLang');
     if (selectedLang) {
@@ -22,6 +34,7 @@ function Boot({ navigation }) {
   useEffect(() => {
     (async function IIFE() {
       await loadLang();
+      await loadConfig();
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

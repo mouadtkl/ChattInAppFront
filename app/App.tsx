@@ -21,11 +21,14 @@ import { Provider } from 'react-redux';
 import store from '@app/store';
 import AppView from '@app/components/AppView';
 import { platformType } from '@app/utils/device';
+// import { useSelector, useDispatch } from 'react-redux';
+// import { getConfig } from '@app/store/reducers/chatgpt/chatgpt.actions';
+// import { appConfig } from '@app/store/reducers/chatgpt/chatgpt.selectors';
 
 declare const global: {
   HermesInternal: null | {};
   originalXMLHttpRequest: {
-    new (): XMLHttpRequest;
+    new(): XMLHttpRequest;
     prototype: XMLHttpRequest;
     readonly DONE: number;
     readonly HEADERS_RECEIVED: number;
@@ -34,7 +37,7 @@ declare const global: {
     readonly UNSENT: number;
   };
   XMLHttpRequest: {
-    new (): XMLHttpRequest;
+    new(): XMLHttpRequest;
     prototype: XMLHttpRequest;
     readonly DONE: number;
     readonly HEADERS_RECEIVED: number;
@@ -50,9 +53,16 @@ if (__DEV__) {
 }
 
 function App() {
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+
+  // const dispatch = useDispatch();
+  // const dynamicConfig = useSelector(appConfig);
+
+  // async function loadConfig() {
+  //   dispatch(getConfig());
+  // }
+
+  useEffect(() => SplashScreen.hide()
+    , []);
 
   return (
     <Provider store={store}>

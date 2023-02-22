@@ -1,7 +1,10 @@
 import { all, takeLatest } from 'redux-saga/effects';
 import { apiCall } from '@app/api/apiCall';
-//import { INIT_PROSPECT } from '@app/store/reducers/prospect/prospect.types';
+import { GET_ANSWER_GPT, LOAD_CONFIG} from '@app/store/reducers/chatgpt/chatgpt.types';
 
 export default function* rootSaga() {
-  //yield all([takeLatest(INIT_PROSPECT, apiCall)]);
+  yield all([
+    takeLatest(GET_ANSWER_GPT, apiCall),
+    takeLatest(LOAD_CONFIG, apiCall),
+  ]);
 }

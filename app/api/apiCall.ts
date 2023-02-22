@@ -8,7 +8,6 @@ import { apiActionTypes, apiTimeOut } from './apiUtils';
 export function* apiCall(action) {
   const { requestTag, successTag, errorTag } = apiActionTypes;
   const { type, request } = action;
-
   try {
     // dispatch requesting action to start loading...
     yield put({ type: typeCreator(type, requestTag) });
@@ -17,7 +16,7 @@ export function* apiCall(action) {
       method: request.METHOD,
       //url: request.URL.concat('?lang=').concat(i18n.language),
       url: request.URL,
-      timeout: request.TIMEOUT || apiTimeOut.low,
+      timeout: request.TIMEOUT || apiTimeOut.middle,
       data: request.PAYLOAD,
       ...(request.RESPONSE_TYPE && { responseType: request.RESPONSE_TYPE }),
     });
@@ -35,8 +34,6 @@ export function* apiCall(action) {
 export function executeCall(dispatch, type, request) {
   const { requestTag, successTag, errorTag } = apiActionTypes;
   // dispatch requesting action to start loading...
-  console.log('sssssssss', request);
-
   dispatch({ type: typeCreator(type, requestTag) });
   return new Promise((resolve, reject) => {
     axios({
@@ -48,7 +45,6 @@ export function executeCall(dispatch, type, request) {
       //...(request.RESPONSE_TYPE && { responseType: request.RESPONSE_TYPE }),
     })
       .then((response) => {
-        console.log('rrrrrrrrrrrrrrrrrrrrrrr');
         dispatch({
           type: typeCreator(type, successTag),
           payload: response.data,
@@ -56,7 +52,6 @@ export function executeCall(dispatch, type, request) {
         resolve(response.data);
       })
       .catch((error) => {
-        console.log('qqqqqqqqqqqqqq', error);
         const errorType = typeCreator(type, errorTag);
         const errorAction = errorHandler(errorType, error);
         dispatch(errorAction);
@@ -66,7 +61,6 @@ export function executeCall(dispatch, type, request) {
 }
 
 export function dispatchCall({ type, request }) {
-  console.log('dqsdqfsdf', type, request);
   return (dispatch) => {
     executeCall(dispatch, type, request);
   };

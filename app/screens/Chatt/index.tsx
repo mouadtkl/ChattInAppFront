@@ -1,6 +1,6 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import theme from '@app/config/theme';
-// import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHeaderHeight } from '@react-navigation/stack';
 import BuildConfig from 'react-native-config';
 import axios from 'axios';
@@ -17,17 +17,21 @@ import {
   Container,
   BodyContainer,
 } from './components';
-// import { getAnswerGpt } from '@app/store/reducers/chatgpt/chatgpt.actions';
-// import { answerGptSelector } from '@app/store/reducers/chatgpt/chatgpt.selectors';
+//import Reactotron from 'reactotron-react-native'
+
+import { getAnswerGpt, setEmptyAnswer } from '@app/store/reducers/chatgpt/chatgpt.actions';
+import { answerGptSelector } from '@app/store/reducers/chatgpt/chatgpt.selectors';
+import { appConfig } from '@app/store/reducers/chatgpt/chatgpt.selectors';
 
 import styles from './styles';
 
 export default function Chatt({ navigation }) {
 
-  // const dispatch = useDispatch();
-  // const answer = useSelector(answerGptSelector);
-  const headerHeight = useHeaderHeight();
+  const dispatch = useDispatch();
+  const answer = useSelector(answerGptSelector);
+  const dynamicConfig = useSelector(appConfig);
 
+  const headerHeight = useHeaderHeight();
 
   const { Typing } = theme.images;
   const [text, setText] = useState<string>('');
@@ -35,24 +39,22 @@ export default function Chatt({ navigation }) {
   const [conversation, setConversation] = useState<Record<string, string>>({});
   const scrollRef = useRef<ScrollView>(null);
 
-  const BASE_URL = BuildConfig.API_BASE_URL;
+  //const BASE_URL = BuildConfig.API_BASE_URL;
+  //const API_URL = `${BASE_URL}/api/`;
+  // const getAnswer = async (question: string) => {
+  //   try {
+  //     const res = await axios.post(
+  //       `${API_URL}ask-a-question`,
+  //       { question: `${question}` },
+  //     );
+  //     return res?.data?.result;
+  //   } catch (e) {
+  //     console.error(e);
+  //     return 'Something went wrong!! ☹️';
+  //   }
+  // };
 
-  const API_URL = `${BASE_URL}/api/`;
-
-  const getAnswer = async (question: string) => {
-    try {
-      const res = await axios.post(
-        `${API_URL}ask-a-question`,
-        { question: `${question}` },
-      );
-      return res?.data?.result;
-    } catch (e) {
-      console.error(e);
-      return 'Something went wrong!! ☹️';
-    }
-  };
-
-  const handleSubmit = useCallback(async () => {
+  const handleSubmit = () => {
 
     setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
     setConversation(prev => ({
@@ -61,15 +63,34 @@ export default function Chatt({ navigation }) {
     }));
     setText('');
     setLoading(true);
-    //dispatch(getAnswerGpt(text));
-    const answer = await getAnswer(text);
+    dispatch(getAnswerGpt(text));
+    // setLoading(false);
+    // setConversation(prev => ({
+    //   ...prev,
+    //   ...{ [`received${Object.keys(prev)?.length}`]: answer },
+    // }));
+    // setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
+  };
+
+
+  useEffect(() => {
+    //Reactotron.log('fffffffffffffffffffffff', dynamicConfig);
+
+    if (answer !== '') { dispatch(setEmptyAnswer()) }
+    setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
+    setConversation(prev => ({}));
+  }, []);
+
+  useEffect(() => {
+    //if(answer !== '') {dispatch(setEmptyAnswer())}
     setLoading(false);
     setConversation(prev => ({
       ...prev,
       ...{ [`received${Object.keys(prev)?.length}`]: answer },
     }));
     setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
-  }, [text]);
+  }, [answer]);
+
 
   return (
     <Container topMargin={headerHeight}>
