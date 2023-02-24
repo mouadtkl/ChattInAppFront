@@ -17,6 +17,10 @@ import {
   SkipContainer,
   SkipText,
 } from './components';
+//import { TestIds, InterstitialAd, AdEventType, BannerAd, BannerAdSize } from '@react-native-firebase/admob';
+import { TestIds, InterstitialAd, AdEventType, BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+
+import Reactotron from 'reactotron-react-native'
 
 const dotStyle: StyleProp<ViewStyle> = {
   backgroundColor: 'transparent',
@@ -61,6 +65,25 @@ export default function Guide({ navigation }) {
     nav.navigate('Home');
   }, []);
 
+  const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL, {
+    requestNonPersonalizedAdsOnly: true,
+    keywords: ['fashion', 'clothing'],
+  });
+
+
+  // const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+      interstitial.show();
+    });
+    // Start loading the interstitial straight away
+    interstitial.load();
+    // Unsubscribe from events on unmount
+    return unsubscribe;
+  }, []);
+
+
   useEffect(() => {
     const allSteps = [
       {
@@ -94,7 +117,13 @@ export default function Guide({ navigation }) {
       },
     ];
     setSteps(allSteps);
+    //loaded ? interstitial.show() : null;
   }, [Learn, Localisation, Notification, Signature, skip]);
+
+  // No advert ready to show yet
+  // if (!loaded) {
+  //   return null;
+  // }
 
   return (
     <Container>
@@ -134,6 +163,19 @@ export default function Guide({ navigation }) {
             </Container>
           ))}
         </Swiper>
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.FULL_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+          onAdLoaded={() => {
+            console.log('Advert loaded');
+          }}
+          onAdFailedToLoad={(error) => {
+            console.error('Advert failed to load: ', error);
+          }}
+        />
       </Background>
     </Container>
   );

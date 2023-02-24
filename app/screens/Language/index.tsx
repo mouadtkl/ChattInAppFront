@@ -12,6 +12,8 @@ import {
   BodyContainer,
   FooterContainer,
 } from './components';
+//import { TestIds, BannerAd, BannerAdSize } from '@react-native-firebase/admob';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 const { BgAuth, LogoBlack, ArrowRight } = theme.images;
 
@@ -37,6 +39,19 @@ export default function Language({ navigation }) {
             iconPosition="right"
           />
         </FooterContainer>
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.FULL_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+          onAdLoaded={() => {
+            console.log('Advert loaded');
+          }}
+          onAdFailedToLoad={(error) => {
+            console.error('Advert failed to load: ', error);
+          }}
+        />
       </Container>
     </Background>
   );

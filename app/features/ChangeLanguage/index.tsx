@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import i18n, { langs } from '@app/i18n';
 import theme from '@app/config/theme';
 import { s, vs } from '@app/utils/styles';
@@ -55,10 +55,12 @@ export default function ChangeLanguage() {
   );
 
   return (
-    <FlatList
-      data={langs}
-      renderItem={renderLangItem}
-      keyExtractor={(item) => item.key}
-    />
+    <View>
+      <FlatList
+        data={langs}
+        renderItem={renderLangItem}
+        keyExtractor={(item) => item.key}
+      />
+    </View>
   );
 }

@@ -64,8 +64,8 @@ function NavBar(props) {
 }
 
 const screenOptions = {
-  Chatt: { backTo: 'Home' },
-  QAndA: { step: 2, withProgress: true, title: 'Ask me some Questions' },
+  Chatt: { backTo: 'Home', },
+  QAndA: { backTo: 'Home', },
 };
 
 const headerScreenOptions = (props) => {

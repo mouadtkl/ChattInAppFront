@@ -18,6 +18,8 @@ import {
   BodyContainer,
 } from './components';
 //import Reactotron from 'reactotron-react-native'
+//import { TestIds, BannerAd, BannerAdSize } from '@react-native-firebase/admob';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 import { getAnswerGpt, setEmptyAnswer } from '@app/store/reducers/chatgpt/chatgpt.actions';
 import { answerGptSelector } from '@app/store/reducers/chatgpt/chatgpt.selectors';
@@ -74,8 +76,6 @@ export default function Chatt({ navigation }) {
 
 
   useEffect(() => {
-    //Reactotron.log('fffffffffffffffffffffff', dynamicConfig);
-
     if (answer !== '') { dispatch(setEmptyAnswer()) }
     setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
     setConversation(prev => ({}));
@@ -95,6 +95,19 @@ export default function Chatt({ navigation }) {
   return (
     <Container topMargin={headerHeight}>
       <BodyContainer>
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.FULL_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+          onAdLoaded={() => {
+            console.log('Advert loaded');
+          }}
+          onAdFailedToLoad={(error) => {
+            console.error('Advert failed to load: ', error);
+          }}
+        />
         <View>
           <ScrollView
             ref={scrollRef}
@@ -156,7 +169,21 @@ export default function Chatt({ navigation }) {
             />
           </KeyboardAvoidingView>
         </View>
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.FULL_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+          onAdLoaded={() => {
+            console.log('Advert loaded');
+          }}
+          onAdFailedToLoad={(error) => {
+            console.error('Advert failed to load: ', error);
+          }}
+        />
       </BodyContainer>
+
     </Container>
 
   );

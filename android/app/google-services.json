@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "451036127986",
+    "project_id": "chattyinapp-88477",
+    "storage_bucket": "chattyinapp-88477.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451036127986:android:446fc79f019c2549cde66b",
+        "android_client_info": {
+          "package_name": "com.chatty.open.gpt.ai.chatbot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451036127986-i8lpu42hgdvnikl8tduhdnkusuatsie3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYxUhHT6KFoRUaRLw0LRwQi3wz9Na-kNM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451036127986-i8lpu42hgdvnikl8tduhdnkusuatsie3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

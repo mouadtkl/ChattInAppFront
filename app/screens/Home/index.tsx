@@ -12,6 +12,8 @@ import {
   BodyContainer,
   FooterContainer,
 } from './components';
+//import { TestIds, BannerAd, BannerAdSize } from '@react-native-firebase/admob';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 const { ArrowDown, Bank, PersonalInfo } = theme.images;
 
@@ -22,6 +24,19 @@ export default function Home({ navigation }) {
   return (
     <Container topMargin={headerHeight}>
       <HeadContainer>
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.FULL_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+          onAdLoaded={() => {
+            console.log('Advert loaded');
+          }}
+          onAdFailedToLoad={(error) => {
+            console.error('Advert failed to load: ', error);
+          }}
+        />
         <Title>ASK CHAT GPT WORLD</Title>
         {/* <ArrowDown width={s(20)} height={vs(20)} /> */}
       </HeadContainer>

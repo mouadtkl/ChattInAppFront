@@ -14,6 +14,8 @@ import {
   ScreenDesc,
   Description
 } from './components';
+//import { TestIds, BannerAd, BannerAdSize } from '@react-native-firebase/admob';
+import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 const { Contactus, Camera, Check } = theme.images;
 
@@ -55,6 +57,19 @@ export default function ContactUs({ navigation }) {
           onPress={() => navigation.goBack()}
           title="Go Back"
           type="primary"
+        />
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.FULL_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+          onAdLoaded={() => {
+            console.log('Advert loaded');
+          }}
+          onAdFailedToLoad={(error) => {
+            console.error('Advert failed to load: ', error);
+          }}
         />
       </FooterContainer>
     </Container>

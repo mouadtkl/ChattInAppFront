@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
   package="com.chatty.open.gpt.ai.chatbot">
 
     ß<uses-permission android:name="android.permission.USE_BIOMETRIC" />
@@ -36,6 +36,9 @@
         android:name="com.google.android.geo.API_KEY"
         android:value="AIzaSyDHKLFsGPnWHZYRJ04TeHKeJr6L7C4jHWA"/>
 
+      <meta-data  android:name="com.google.android.gms.ads.APPLICATION_ID"
+        android:value="ca-app-pub-2120609105203416~4635914232"
+        tools:replace="android:value"/>
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useRef } from 'react';
+import React, { useEffect, useCallback, useState, useRef } from 'react';
 import theme from '@app/config/theme';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHeaderHeight } from '@react-navigation/stack';
@@ -17,15 +17,17 @@ import {
   Container,
   BodyContainer,
 } from './components';
-// import { getAnswerGpt } from '@app/store/reducers/chatgpt/chatgpt.actions';
-// import { answerGptSelector } from '@app/store/reducers/chatgpt/chatgpt.selectors';
+import { getAnswerGpt, setEmptyAnswer } from '@app/store/reducers/chatgpt/chatgpt.actions';
+import { answerGptSelector } from '@app/store/reducers/chatgpt/chatgpt.selectors';
+//import { TestIds, BannerAd, BannerAdSize } from '@react-native-firebase/admob';
+import { TestIds, RewardedAd, RewardedAdEventType, InterstitialAd, AdEventType, BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 
 import styles from './styles';
 
 export default function QAndA({ navigation }) {
 
-  // const dispatch = useDispatch();
-  // const answer = useSelector(answerGptSelector);
+  const dispatch = useDispatch();
+  const answer = useSelector(answerGptSelector);
   const headerHeight = useHeaderHeight();
 
 
@@ -36,25 +38,41 @@ export default function QAndA({ navigation }) {
   const scrollRef = useRef<ScrollView>(null);
 
 
-  const BASE_URL = BuildConfig.API_BASE_URL;
+  const rewarded = RewardedAd.createForAdRequest(TestIds.REWARDED, {
+    requestNonPersonalizedAdsOnly: true,
+    keywords: ['fashion', 'clothing'],
+  });
 
-  const API_URL = `${BASE_URL}/api/`;
+  //const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
+      rewarded.show();
+    });
+    const unsubscribeEarned = rewarded.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      reward => {
+        console.log('User earned reward of ', reward);
+      },
+    );
+
+    // Start loading the rewarded ad straight away
+    rewarded.load();
+
+    // Unsubscribe from events on unmount
+    return () => {
+      unsubscribeLoaded();
+      unsubscribeEarned();
+    };
+  }, []);
+
+  // No advert ready to show yet
+  // if (!loaded) {
+  //   return null;
+  // }
 
 
-  const getAnswer = async (question: string) => {
-    try {
-      const res = await axios.post(
-        `${API_URL}ask-a-question`,
-        { question },
-      );
-      return res?.data?.result;
-    } catch (e) {
-      console.error(e);
-      return 'Something went wrong!! ☹️';
-    }
-  };
-
-  const handleSubmit = useCallback(async () => {
+  const handleSubmit = () => {
 
     setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
     setConversation(prev => ({
@@ -63,15 +81,31 @@ export default function QAndA({ navigation }) {
     }));
     setText('');
     setLoading(true);
-    //dispatch(getAnswerGpt(text));
-    const answer = await getAnswer(text);
+    dispatch(getAnswerGpt(text));
+    // const answer = await getAnswer(text);
+    // setLoading(false);
+    // setConversation(prev => ({
+    //   ...prev,
+    //   ...{ [`received${Object.keys(prev)?.length}`]: answer },
+    // }));
+    // setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
+  };
+
+  useEffect(() => {
+    if (answer !== '') { dispatch(setEmptyAnswer()) }
+    setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
+    setConversation(prev => ({}));
+  }, []);
+
+  useEffect(() => {
+    //if(answer !== '') {dispatch(setEmptyAnswer())}
     setLoading(false);
     setConversation(prev => ({
       ...prev,
       ...{ [`received${Object.keys(prev)?.length}`]: answer },
     }));
     setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
-  }, [text]);
+  }, [answer]);
 
   return (
     <Container topMargin={headerHeight}>
@@ -137,6 +171,19 @@ export default function QAndA({ navigation }) {
             />
           </KeyboardAvoidingView>
         </View>
+        <BannerAd
+          unitId={TestIds.BANNER}
+          size={BannerAdSize.FULL_BANNER}
+          requestOptions={{
+            requestNonPersonalizedAdsOnly: true,
+          }}
+          onAdLoaded={() => {
+            console.log('Advert loaded');
+          }}
+          onAdFailedToLoad={(error) => {
+            console.error('Advert failed to load: ', error);
+          }}
+        />
       </BodyContainer>
     </Container>
 
