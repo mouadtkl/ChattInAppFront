@@ -5,6 +5,7 @@ import { ViewStyle, StyleProp } from 'react-native';
 import Swiper from 'react-native-swiper';
 import { s, vs } from '@app/utils/styles';
 import { SvgProps } from 'react-native-svg';
+import BuildConfig from 'react-native-config';
 import {
   Container,
   Background,
@@ -20,7 +21,11 @@ import {
 //import { TestIds, InterstitialAd, AdEventType, BannerAd, BannerAdSize } from '@react-native-firebase/admob';
 import { TestIds, InterstitialAd, AdEventType, BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 
-import Reactotron from 'reactotron-react-native'
+
+const adUnitId = BuildConfig.ENV !== 'PRODUCTION' ? TestIds.BANNER : 'ca-app-pub-2120609105203416/1601028108';
+
+const intAdUnitId = BuildConfig.ENV !== 'PRODUCTION' ? TestIds.INTERSTITIAL : 'ca-app-pub-2120609105203416/7783293071';
+
 
 const dotStyle: StyleProp<ViewStyle> = {
   backgroundColor: 'transparent',
@@ -65,7 +70,7 @@ export default function Guide({ navigation }) {
     nav.navigate('Home');
   }, []);
 
-  const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL, {
+  const interstitial = InterstitialAd.createForAdRequest(intAdUnitId, {
     requestNonPersonalizedAdsOnly: true,
     keywords: ['fashion', 'clothing'],
   });
@@ -164,7 +169,7 @@ export default function Guide({ navigation }) {
           ))}
         </Swiper>
         <BannerAd
-          unitId={TestIds.BANNER}
+          unitId={adUnitId}
           size={BannerAdSize.FULL_BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,

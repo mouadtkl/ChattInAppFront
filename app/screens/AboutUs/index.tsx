@@ -2,6 +2,7 @@
 import React, { useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@app/components/Button';
+import BuildConfig from 'react-native-config';
 import theme from '@app/config/theme';
 import { s, vs } from '@app/utils/styles';
 import { Image } from 'react-native';
@@ -37,11 +38,14 @@ declare type ImageState = {
 export default function AboutUs({ navigation }) {
   const dispatch = useDispatch();
 
+  const adUnitId = BuildConfig.ENV !== 'PRODUCTION' ? TestIds.BANNER : 'ca-app-pub-2120609105203416/7483345528';
+
+
   return (
     <Container>
       <HeaderContainer>
         <BannerAd
-          unitId={TestIds.BANNER}
+          unitId={adUnitId}
           size={BannerAdSize.FULL_BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,
@@ -72,7 +76,7 @@ export default function AboutUs({ navigation }) {
           type="primary"
         />
         <BannerAd
-          unitId={TestIds.BANNER}
+          unitId={adUnitId}
           size={BannerAdSize.FULL_BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,

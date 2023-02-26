@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   answer: null,
-  dynamicConfig: null,
+  dynamicConfig: [],
 };
 
 const chatgptReducer = produce((draft, action) => {

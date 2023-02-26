@@ -26,6 +26,9 @@ import styles from './styles';
 
 export default function QAndA({ navigation }) {
 
+  const adUnitId = BuildConfig.ENV !== 'PRODUCTION' ? TestIds.BANNER : 'ca-app-pub-2120609105203416/2837523506';
+  const intAdUnitId = BuildConfig.ENV !== 'PRODUCTION' ? TestIds.INTERSTITIAL : 'ca-app-pub-2120609105203416/4777855788';
+
   const dispatch = useDispatch();
   const answer = useSelector(answerGptSelector);
   const headerHeight = useHeaderHeight();
@@ -38,38 +41,21 @@ export default function QAndA({ navigation }) {
   const scrollRef = useRef<ScrollView>(null);
 
 
-  const rewarded = RewardedAd.createForAdRequest(TestIds.REWARDED, {
+  const interstitial = InterstitialAd.createForAdRequest(intAdUnitId, {
     requestNonPersonalizedAdsOnly: true,
     keywords: ['fashion', 'clothing'],
   });
 
-  //const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
-      rewarded.show();
+    const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+      interstitial.show();
     });
-    const unsubscribeEarned = rewarded.addAdEventListener(
-      RewardedAdEventType.EARNED_REWARD,
-      reward => {
-        console.log('User earned reward of ', reward);
-      },
-    );
-
-    // Start loading the rewarded ad straight away
-    rewarded.load();
-
+    // Start loading the interstitial straight away
+    interstitial.load();
     // Unsubscribe from events on unmount
-    return () => {
-      unsubscribeLoaded();
-      unsubscribeEarned();
-    };
+    return unsubscribe;
   }, []);
-
-  // No advert ready to show yet
-  // if (!loaded) {
-  //   return null;
-  // }
 
 
   const handleSubmit = () => {
@@ -172,7 +158,7 @@ export default function QAndA({ navigation }) {
           </KeyboardAvoidingView>
         </View>
         <BannerAd
-          unitId={TestIds.BANNER}
+          unitId={adUnitId}
           size={BannerAdSize.FULL_BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,

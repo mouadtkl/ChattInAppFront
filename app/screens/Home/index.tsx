@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from '@app/components/Button';
+import BuildConfig from 'react-native-config';
 import { useHeaderHeight } from '@react-navigation/stack';
 import HelpAndServices from '@app/features/HelpAndServices';
 import theme from '@app/config/theme';
@@ -21,11 +22,14 @@ export default function Home({ navigation }) {
   const { translate } = useTranslation('Home');
   const headerHeight = useHeaderHeight();
 
+  const adUnitId = BuildConfig.ENV !== 'PRODUCTION' ? TestIds.BANNER : 'ca-app-pub-2120609105203416/7041057040';
+
+
   return (
     <Container topMargin={headerHeight}>
       <HeadContainer>
         <BannerAd
-          unitId={TestIds.BANNER}
+          unitId={adUnitId}
           size={BannerAdSize.FULL_BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,

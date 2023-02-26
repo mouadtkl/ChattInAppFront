@@ -3,7 +3,7 @@ import { reactotronRedux as reduxPlugin } from 'reactotron-redux'
 import { name as appName } from '../../../app.json'
 import BuildConfig from 'react-native-config';
 
-if (BuildConfig.ENV === 'DEVELOPMENT') {
+if (BuildConfig.ENV !== 'PRODUCTION') {
     // https://github.com/infinitered/reactotron for more options!
     Reactotron
         .configure({ name: appName })

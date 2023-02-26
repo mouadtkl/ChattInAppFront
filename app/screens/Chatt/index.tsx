@@ -19,7 +19,7 @@ import {
 } from './components';
 //import Reactotron from 'reactotron-react-native'
 //import { TestIds, BannerAd, BannerAdSize } from '@react-native-firebase/admob';
-import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+import { TestIds, RewardedAd, RewardedAdEventType, BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 
 import { getAnswerGpt, setEmptyAnswer } from '@app/store/reducers/chatgpt/chatgpt.actions';
 import { answerGptSelector } from '@app/store/reducers/chatgpt/chatgpt.selectors';
@@ -28,6 +28,9 @@ import { appConfig } from '@app/store/reducers/chatgpt/chatgpt.selectors';
 import styles from './styles';
 
 export default function Chatt({ navigation }) {
+
+  const adUnitId = BuildConfig.ENV !== 'PRODUCTION' ? TestIds.BANNER : 'ca-app-pub-2120609105203416/1788730366';
+  const rewAdUnitId = BuildConfig.ENV !== 'PRODUCTION' ? TestIds.REWARDED : 'ca-app-pub-2120609105203416/2064046628';
 
   const dispatch = useDispatch();
   const answer = useSelector(answerGptSelector);
@@ -74,15 +77,44 @@ export default function Chatt({ navigation }) {
     // setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
   };
 
+  const rewarded = RewardedAd.createForAdRequest(rewAdUnitId, {
+    requestNonPersonalizedAdsOnly: true,
+    keywords: ['fashion', 'clothing'],
+  });
 
   useEffect(() => {
+
     if (answer !== '') { dispatch(setEmptyAnswer()) }
     setTimeout(() => scrollRef?.current?.scrollToEnd({ animated: true }), 200);
     setConversation(prev => ({}));
+
+    const unsubscribeLoaded = rewarded.addAdEventListener(RewardedAdEventType.LOADED, () => {
+      rewarded.show();
+    });
+    const unsubscribeEarned = rewarded.addAdEventListener(
+      RewardedAdEventType.EARNED_REWARD,
+      reward => {
+        console.log('User earned reward of ', reward);
+      },
+    );
+
+    // Start loading the rewarded ad straight away
+    rewarded.load();
+
+    // Unsubscribe from events on unmount
+    return () => {
+      unsubscribeLoaded();
+      unsubscribeEarned();
+    };
+
   }, []);
 
+  // No advert ready to show yet
+  // if (!loaded) {
+  //   return null;
+  // }
+
   useEffect(() => {
-    //if(answer !== '') {dispatch(setEmptyAnswer())}
     setLoading(false);
     setConversation(prev => ({
       ...prev,
@@ -96,7 +128,7 @@ export default function Chatt({ navigation }) {
     <Container topMargin={headerHeight}>
       <BodyContainer>
         <BannerAd
-          unitId={TestIds.BANNER}
+          unitId={adUnitId}
           size={BannerAdSize.FULL_BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,
@@ -170,7 +202,7 @@ export default function Chatt({ navigation }) {
           </KeyboardAvoidingView>
         </View>
         <BannerAd
-          unitId={TestIds.BANNER}
+          unitId={adUnitId}
           size={BannerAdSize.FULL_BANNER}
           requestOptions={{
             requestNonPersonalizedAdsOnly: true,
