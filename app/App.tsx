@@ -55,7 +55,7 @@ if (__DEV__) {
 function App() {
 
   // const dispatch = useDispatch();
-  // const dynamicConfig = useSelector(appConfig);
+  // const configData = useSelector(appConfig);
 
   // async function loadConfig() {
   //   dispatch(getConfig());

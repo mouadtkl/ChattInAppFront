@@ -8,6 +8,7 @@ import Chatt from '@app/screens/Chatt';
 import QAndA from '@app/screens/QAndA';
 import Language from '@app/screens/Language';
 import Boot from '@app/screens/Boot';
+import Configure from '@app/screens/Configure';
 import theme from '@app/config/theme';
 import { s, vs } from '@app/utils/styles';
 import CircularProgress from '@app/components/CircularProgress';
@@ -101,6 +102,12 @@ export default function OffAPPStack() {
         component={Boot}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="Configure"
+        component={Configure}
+        options={{ headerShown: false }}
+      />
+      
       <Stack.Screen
         name="Lang"
         component={Language}

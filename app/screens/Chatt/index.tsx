@@ -34,7 +34,7 @@ export default function Chatt({ navigation }) {
 
   const dispatch = useDispatch();
   const answer = useSelector(answerGptSelector);
-  const dynamicConfig = useSelector(appConfig);
+  const configData = useSelector(appConfig);
 
   const headerHeight = useHeaderHeight();
 

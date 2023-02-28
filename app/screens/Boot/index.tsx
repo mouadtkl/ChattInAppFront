@@ -8,13 +8,14 @@ import { BodyContainer } from './components';
 import { useSelector, useDispatch } from 'react-redux';
 import { getConfig } from '@app/store/reducers/chatgpt/chatgpt.actions';
 import { appConfig } from '@app/store/reducers/chatgpt/chatgpt.selectors';
+import Reactotron from 'reactotron-react-native'
 
 const { BgHome } = theme.images;
 
 function Boot({ navigation }) {
 
   const dispatch = useDispatch();
-  const dynamicConfig = useSelector(appConfig);
+  const configData = useSelector(appConfig);
 
 
   async function loadConfig() {
@@ -33,11 +34,14 @@ function Boot({ navigation }) {
 
   useEffect(() => {
     (async function IIFE() {
-      await loadLang();
       await loadConfig();
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    configData.status && configData.status === 'success' && configData.data.config.activate_vpn === 'true' ? navigation.navigate('Configure') :
+      loadLang();
+  }, [configData.status]);
 
   return (
     <Background /*source={BgHome}*/>

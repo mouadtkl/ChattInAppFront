@@ -25,9 +25,9 @@ const { BgAuth, LogoBlack, ArrowRight } = theme.images;
 
 export default function Language({ navigation }) {
   const { translate } = useTranslation('Language');
-  const dynamicConfig = useSelector(appConfig);
+  const configData = useSelector(appConfig);
 
-  //Reactotron.log('sqfsgsg', BuildConfig, dynamicConfig.config[0]);
+  //Reactotron.log('sqfsgsg', BuildConfig, configData.config[0]);
   const adUnitId = BuildConfig.ENV !== 'PRODUCTION' ? TestIds.BANNER : 'ca-app-pub-2120609105203416/9862661500';
 
   return (
